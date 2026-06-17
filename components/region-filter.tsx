@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/select";
 
 interface RegionFilterProps {
+  value: string;
   onRegionChange: (region: string) => void;
 }
 
@@ -45,9 +46,9 @@ const regions = [
   "Vietnamese",
 ];
 
-export function RegionFilter({ onRegionChange }: RegionFilterProps) {
+export function RegionFilter({ value, onRegionChange }: RegionFilterProps) {
   return (
-    <Select onValueChange={onRegionChange} defaultValue="All">
+    <Select onValueChange={onRegionChange} value={value}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Select Region" />
       </SelectTrigger>

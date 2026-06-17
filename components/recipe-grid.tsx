@@ -15,6 +15,21 @@ export function RecipeGrid({ filter }: { filter: "all" | "favorites" }) {
   const [selectedRecipe, setSelectedRecipe] = useState<any>(null); // Stores the recipe for the modal
   const [isModalOpen, setIsModalOpen] = useState(false); // Tracks modal open/close state
   const [selectedRegion, setSelectedRegion] = useState("All"); // Tracks selected region
+
+  // Load persisted region on mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedRegion = localStorage.getItem("recipehub_selected_region");
+      if (savedRegion) {
+        setSelectedRegion(savedRegion);
+      }
+    }
+  }, []);
+
+  const handleRegionChange = (region: string) => {
+    setSelectedRegion(region);
+    localStorage.setItem("recipehub_selected_region", region);
+  };
   const [searchQuery, setSearchQuery] = useState(""); // Tracks search query
   const [newRecipe, setNewRecipe] = useState({
     title: "",
@@ -143,7 +158,7 @@ export function RecipeGrid({ filter }: { filter: "all" | "favorites" }) {
       {/* Search and Filter Controls */}
       <div className="flex flex-col sm:flex-row gap-4 mb-6">
         <SearchBar onSearch={handleSearch} />
-        <RegionFilter onRegionChange={setSelectedRegion} />
+        <RegionFilter value={selectedRegion} onRegionChange={handleRegionChange} />
       </div>
 
       {/* Recipe Grid */}

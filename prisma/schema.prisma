@@ -9,19 +9,19 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model Recipe {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String   @db.Text
-  imageUrl    String   @db.Text
-  ingredients String   @db.Text
-  instructions String  @db.Text
-  rating      Float
-  isFavorite  Boolean
-  origin      String
-  servings    Int
+  id           Int      @id @default(autoincrement())
+  title        String
+  description  String
+  imageUrl     String
+  ingredients  String
+  instructions String
+  rating       Float
+  isFavorite   Boolean
+  origin       String
+  servings     Int
 }

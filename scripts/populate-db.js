@@ -42,15 +42,23 @@ async function fetchMealDetails(id) {
   }
 }
 
+const queryMapping = {
+  "American": "United States",
+  "Indian": "India"
+};
+
 async function populateDatabase() {
   // First, fetch all available areas
   const areas = await fetchAreas();
   console.log("Found areas:", areas);
 
   for (const area of areas) {
+    // Map the area to the API filter name if a mapping exists
+    const queryArea = queryMapping[area] || area;
+    
     // Fetch meals for each area
-    const meals = await fetchMealsByArea(area);
-    console.log(`Found ${meals.length} meals for ${area}`);
+    const meals = await fetchMealsByArea(queryArea);
+    console.log(`Found ${meals.length} meals for ${area} (queried as ${queryArea})`);
 
     for (const meal of meals) {
       try {

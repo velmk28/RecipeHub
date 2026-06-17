@@ -8,9 +8,9 @@ Built with Next.js & TypeScript, Recipehub provides a clean dashboard, admin pan
 
 
 
-🚀 Features
+## Features
 
-✅ Browse Recipes – Explore all recipes on the homepage
+- **Browse Recipes :** Explore all recipes on the homepage
 ✅ Add Recipes – Quickly add new recipes from the dashboard
 ✅ Edit / Delete Recipes – Update or remove recipes using API endpoints
 ✅ Admin Panel – Manage admin-only features securely
